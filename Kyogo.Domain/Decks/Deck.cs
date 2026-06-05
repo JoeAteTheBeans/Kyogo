@@ -6,9 +6,9 @@ namespace Kyogo.Domain.Decks;
 
 public class Deck
 {
-    public UserId? OwnerId { get; init; }
-    
     public required DeckId Id { get; init; }
+    
+    public UserId? OwnerId { get; init; }
     
     public required string Name { get; init; }
     
