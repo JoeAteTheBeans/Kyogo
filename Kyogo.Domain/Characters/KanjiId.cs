@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Kyogo.Domain.Characters;
 
 public readonly record struct KanjiId
 {
-    private readonly string _value;
+    public string Value { get; init; }
     
     public KanjiId(string value) : this()
     {
@@ -10,9 +12,9 @@ public readonly record struct KanjiId
             throw new ArgumentException("KanjiId cannot be whitespace or null.");
         if (value.EnumerateRunes().Count() != 1)
             throw new ArgumentException("KanjiId must be exactly one Unicode scalar value.");
-        _value = value;
+        Value = value;
     }
     
     public override string ToString() 
-        => _value;
+        => Value;
 }
