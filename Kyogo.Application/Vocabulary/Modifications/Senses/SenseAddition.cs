@@ -1,5 +1,4 @@
 ﻿using Kyogo.Application.Vocabulary.Modifications.Glosses;
-using Kyogo.Domain.Vocabulary.Glosses;
 using Kyogo.Domain.Vocabulary.Senses;
 
 namespace Kyogo.Application.Vocabulary.Modifications.Senses;

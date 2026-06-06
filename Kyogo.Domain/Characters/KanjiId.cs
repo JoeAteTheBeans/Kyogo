@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Kyogo.Domain.Characters;
 
 public readonly record struct KanjiId
