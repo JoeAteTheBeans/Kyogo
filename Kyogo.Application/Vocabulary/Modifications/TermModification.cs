@@ -6,7 +6,7 @@ namespace Kyogo.Application.Vocabulary.Modifications;
 
 public sealed class TermModification
 {
-    public required UserId OwnderId { get; init; }
+    public required UserId OwnerId { get; init; }
     
     public required TermId TermId { get; init; }
     
