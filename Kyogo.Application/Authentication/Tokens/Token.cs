@@ -1,4 +1,4 @@
-namespace Kyogo.Domain.Users;
+namespace Kyogo.Application.Authentication.Tokens;
 
 public readonly record struct Token(string Value)
 {
