@@ -3,7 +3,7 @@ using Kyogo.Domain.Users;
 
 namespace Kyogo.Application.Authentication;
 
-public sealed class AuthenticationService(IUserRepository userRepository, ITokenService tokenService)
+public sealed class AuthenticationService(IUserRepository userRepository, ITokenService tokenService, IUnitOfWork unitOfWork)
 {
     public async Task<RegisterResult> RegisterAsync(string username, string email, string password, CancellationToken cancellationToken = default)
     {
@@ -22,6 +22,7 @@ public sealed class AuthenticationService(IUserRepository userRepository, IToken
             PasswordHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password)
         };
         await userRepository.AddAsync(registering, cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
         return new RegisterResult(RegisterResultState.Success, tokenService.GenerateToken(registering));
     }
 
