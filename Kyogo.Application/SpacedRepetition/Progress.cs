@@ -4,50 +4,22 @@ namespace Kyogo.Application.SpacedRepetition;
 
 public sealed class Progress
 {
-    public required UserId OwnerId { get; init; }
-    
     public required ProgressId Id { get; init; }
     
-    public bool Known { get; set; }
-
-    public ProgressStage Stage
-    {
-        get;
-        set
-        {
-            switch (value)
-            {
-                case ProgressStage.Learning:
-                    Step = 0;
-                    Interval = LearningSteps[Step.Value];
-                    break;
-                case ProgressStage.Reviewing:
-                    if (RetainedInterval is not null)
-                    {
-                        Interval = RetainedInterval.Value;
-                        RetainedInterval = null;
-                    }
-                    Step = null;
-                    break;
-                case ProgressStage.Relearning:
-                    RetainedInterval = Interval;
-                    Step = 0;
-                    Interval = RelearningSteps[Step.Value];
-                    break;
-                default: throw new ArgumentOutOfRangeException(nameof(value), value, null);
-            }
-            field = value;
-        }
-    }
+    public required UserId OwnerId { get; init; }
     
-    public DateTime DueDate { get; private set; }
+    public bool Known { get; private set; }
+
+    public ProgressStage Stage { get; private set; }
+    
+    public DateTimeOffset DueDate { get; private set; }
 
     public TimeSpan Interval { get; private set; }
     
+    public int? Step { get; private set; }
+    
     public TimeSpan? RetainedInterval { get; private set; }
     
-    public int? Step { get; private set; }
-
     private static readonly TimeSpan[] LearningSteps = [
         TimeSpan.FromMinutes(3),
         TimeSpan.FromMinutes(5),
@@ -75,6 +47,32 @@ public sealed class Progress
 
     private const double RelearningBreakoutModifier = 0.4;
 
+    public void TransitionStage(ProgressStage stage)
+    {
+        switch (stage)
+        {
+            case ProgressStage.Learning:
+                Step = 0;
+                Interval = LearningSteps[Step.Value];
+                break;
+            case ProgressStage.Reviewing:
+                if (RetainedInterval is not null)
+                {
+                    Interval = RetainedInterval.Value;
+                    RetainedInterval = null;
+                }
+                Step = null;
+                break;
+            case ProgressStage.Relearning:
+                RetainedInterval = Interval;
+                Step = 0;
+                Interval = RelearningSteps[Step.Value];
+                break;
+            default: throw new ArgumentOutOfRangeException(nameof(stage), stage, null);
+        }
+        Stage = stage;
+    }
+    
     public void ApplyGrade(AnswerGrade grade)
     {
         if (Stage == ProgressStage.Reviewing)
@@ -82,7 +80,7 @@ public sealed class Progress
             switch (grade)
             {
                 case AnswerGrade.Nothing or AnswerGrade.Something:
-                    Stage = ProgressStage.Relearning;
+                    TransitionStage(ProgressStage.Relearning);
                     break;
                 case AnswerGrade.VeryHard when Interval > VeryHardRedoLowerLimit:
                     RetainedInterval = Interval;
@@ -111,7 +109,7 @@ public sealed class Progress
             Interval = RetainedInterval.Value * RelearningBreakoutModifier;
             RetainedInterval = null;
         }
-        Stage = ProgressStage.Reviewing;
+        TransitionStage(ProgressStage.Reviewing);
         Step = null;
         DueDate = DateTime.UtcNow + Interval;
     }
