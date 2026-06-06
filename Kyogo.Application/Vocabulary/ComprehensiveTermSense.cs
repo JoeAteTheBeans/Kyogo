@@ -17,7 +17,7 @@ public sealed class ComprehensiveTermSense
     
     public IReadOnlyCollection<SenseTag> Tags { get; init; }
     
-    public ComprehensiveTermSense(Sense sense, TermSenseModification? modification)
+    public ComprehensiveTermSense(Sense sense, SenseModification? modification)
     {
         Id = sense.Id;
         PartOfSpeech = modification?.PartOfSpeechOverride ??  sense.PartOfSpeech;
@@ -39,9 +39,9 @@ public sealed class ComprehensiveTermSense
             foreach(GlossAddition addition in modification.GlossAdditions.OrderByDescending(x => x.InsertionIndex).ToList())
                 glosses.Insert(addition.InsertionIndex, new ComprehensiveGloss
                 {
-                    Id = addition.AdditionalGloss.Id, 
-                    Text = addition.AdditionalGloss.Text, 
-                    Primary = addition.AdditionalGloss.Primary
+                    Id = addition.Id, 
+                    Text = addition.Text, 
+                    Primary = addition.Primary
                 });
         }
         Glosses = glosses;
@@ -49,12 +49,12 @@ public sealed class ComprehensiveTermSense
         Tags = modification?.TagsOverride?.ToList() ?? sense.Tags;
     }
     
-    public ComprehensiveTermSense(AdditionalTermSense additionalTermSense)
+    public ComprehensiveTermSense(SenseAddition senseAddition)
     {
-        Id = additionalTermSense.Id;
-        PartOfSpeech = additionalTermSense.PartOfSpeech;
-        Glosses = additionalTermSense.Glosses.Select(x => new ComprehensiveGloss { Id = x.Id, Text = x.Text, Primary = x.Primary }).ToList();
-        Common = additionalTermSense.Common;
-        Tags = additionalTermSense.Tags.ToList();
+        Id = senseAddition.Id;
+        PartOfSpeech = senseAddition.PartOfSpeech;
+        Glosses = senseAddition.Glosses.Select(x => new ComprehensiveGloss { Id = x.Id, Text = x.Text, Primary = x.Primary }).ToList();
+        Common = senseAddition.Common;
+        Tags = senseAddition.Tags.ToList();
     }
 }

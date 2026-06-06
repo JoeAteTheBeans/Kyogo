@@ -26,10 +26,10 @@ public sealed class ComprehensiveTerm
            senses.Add(new ComprehensiveTermSense(sense, modification?.SenseModifications.FirstOrDefault(x => x.SenseId == sense.Id)));
        if (modification != null)
        {
-           foreach(TermSenseRemoval removal in  modification.SenseRemovals)
+           foreach(SenseRemoval removal in  modification.SenseRemovals)
                senses.RemoveAll(x => x.Id == removal.RemoveSenseId);
-           foreach (TermSenseAddition addition in modification.SenseAdditions.OrderByDescending(x => x.InsertionIndex).ToList())
-               senses.Insert(addition.InsertionIndex, new ComprehensiveTermSense(addition.AdditionalTermSense));
+           foreach (SenseAddition addition in modification.SenseAdditions.OrderByDescending(x => x.InsertionIndex).ToList())
+               senses.Insert(addition.InsertionIndex, new ComprehensiveTermSense(addition));
        }
        Senses = senses;
        Progress = progress;

@@ -3,7 +3,7 @@ using Kyogo.Domain.Vocabulary.Senses;
 
 namespace Kyogo.Application.Vocabulary.Modifications.Senses;
 
-public sealed class TermSenseModification
+public sealed class SenseModification
 {
     public required SenseId SenseId { get; init; }
     

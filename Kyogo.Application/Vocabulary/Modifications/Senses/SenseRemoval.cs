@@ -2,7 +2,7 @@
 
 namespace Kyogo.Application.Vocabulary.Modifications.Senses;
 
-public sealed class TermSenseRemoval
+public sealed class SenseRemoval
 {
     public required SenseId RemoveSenseId { get; init; }
 }

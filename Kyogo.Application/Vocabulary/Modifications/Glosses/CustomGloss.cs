@@ -1,8 +1,8 @@
-﻿using Kyogo.Domain.Vocabulary.Glosses;
+using Kyogo.Domain.Vocabulary.Glosses;
 
 namespace Kyogo.Application.Vocabulary.Modifications.Glosses;
 
-public sealed class AdditionalGloss
+public sealed class CustomGloss
 {
     public required GlossId Id { get; init; } 
     
