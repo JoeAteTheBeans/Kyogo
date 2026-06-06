@@ -6,7 +6,7 @@ public sealed class GlossModification
 {
     public required GlossId ModifyGlossId { get; init; }
     
-    public required string? TextOverride { get; set; }
+    public string? TextOverride { get; set; }
     
     public bool? PrimaryOverride { get; set; }
 }
