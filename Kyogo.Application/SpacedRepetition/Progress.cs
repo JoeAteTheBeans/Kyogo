@@ -8,7 +8,7 @@ public sealed class Progress
     
     public required UserId OwnerId { get; init; }
     
-    public bool Known { get; private set; }
+    public bool Fluent { get; private set; }
 
     public ProgressStage Stage { get; private set; }
     
