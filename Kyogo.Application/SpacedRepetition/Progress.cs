@@ -1,4 +1,5 @@
 using Kyogo.Domain.Users;
+using Kyogo.Domain.Vocabulary;
 
 namespace Kyogo.Application.SpacedRepetition;
 
@@ -7,6 +8,10 @@ public sealed class Progress
     public required ProgressId Id { get; init; }
     
     public required UserId OwnerId { get; init; }
+    
+    public required TermId TermId { get; init; }
+    
+    public CardType  CardType { get; init; }
     
     public bool Fluent { get; private set; }
 

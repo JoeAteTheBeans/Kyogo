@@ -21,7 +21,7 @@ public sealed class StudyRegimentService(IDeckRepository deckRepository, IDeckSu
         HashSet<TermId> terms = [];
         foreach (Deck deck in decks)
             terms.UnionWith(deck.Terms);
-        terms.UnionWith(progressTask.Result.Select(x => ProgressId.DeriveTermId(x.Id)));
+        terms.UnionWith(progressTask.Result.Select(x => x.TermId));
         return terms;
     }
 
@@ -30,6 +30,6 @@ public sealed class StudyRegimentService(IDeckRepository deckRepository, IDeckSu
         var termsTask = GetTermsAsync(userId, cancellationToken);
         Task<IReadOnlyCollection<Progress>> progressTask = progressRepository.GetAllByUserAsync(userId, cancellationToken);
         await Task.WhenAll(termsTask, progressTask);
-        return termsTask.Result.Except(progressTask.Result.Select(x => ProgressId.DeriveTermId(x.Id))).ToList();
+        return termsTask.Result.Except(progressTask.Result.Select(x => x.TermId)).ToList();
     }
 }
