@@ -2,7 +2,8 @@ namespace Kyogo.Application.Authentication.Tokens;
 
 public enum TokenExchangeResultState
 {
-    AlreadyRevoked,
+    RefreshTokenNotFound,
+    Revoked,
     Expired,
     UserNotFound,
     Exchanged
