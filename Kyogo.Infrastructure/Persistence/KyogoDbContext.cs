@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kyogo.Infrastructure.Persistence;
 
-public class KyogoDbContext : DbContext
+public class KyogoDbContext(DbContextOptions<KyogoDbContext> options) : DbContext(options)
 {
     public DbSet<User> Users { get; set; }
     
