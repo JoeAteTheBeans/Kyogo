@@ -1,5 +1,4 @@
 using Kyogo.Application.Persistence;
-using Kyogo.Domain.Characters;
 using Kyogo.Domain.Vocabulary;
 using Microsoft.EntityFrameworkCore;
 
