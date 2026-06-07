@@ -2,9 +2,9 @@ namespace Kyogo.Infrastructure.Authentication;
 
 public sealed class JwtSettings
 {
-    public string Secret { get; init; } = string.Empty;
-    public string Issuer { get; init; } = string.Empty;
-    public string Audience { get; init; } = string.Empty;
-    public int TokenExpiration { get; init; } = 60;
-    public int RefreshTokenExpiration { get; init; } = 10080;
+    public required string Secret { get; init; }
+    public required string Issuer { get; init; }
+    public required string Audience { get; init; }
+    public required int TokenExpiration { get; init; }
+    public required int RefreshTokenExpiration { get; init; }
 }
