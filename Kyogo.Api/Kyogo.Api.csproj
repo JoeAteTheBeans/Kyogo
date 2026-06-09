@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+      <UserSecretsId>e62e6df7-dc59-4840-9dc8-72a23ea62dbe</UserSecretsId>
+  </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Kyogo.Domain\Kyogo.Domain.csproj" />
+        <ProjectReference Include="..\Kyogo.Application\Kyogo.Application.csproj" />
+        <ProjectReference Include="..\Kyogo.Infrastructure\Kyogo.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>

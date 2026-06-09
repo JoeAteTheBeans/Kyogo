@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kyogo.Application", "Kyogo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kyogo.Infrastructure", "Kyogo.Infrastructure\Kyogo.Infrastructure.csproj", "{846A7B96-9778-4851-A606-DD9D1216E0B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kyogo.Api", "Kyogo.Api\Kyogo.Api.csproj", "{CDC7ECDC-8FFE-418B-9250-C2AF3A99E512}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,5 +29,9 @@ Global
 		{846A7B96-9778-4851-A606-DD9D1216E0B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{846A7B96-9778-4851-A606-DD9D1216E0B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{846A7B96-9778-4851-A606-DD9D1216E0B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC7ECDC-8FFE-418B-9250-C2AF3A99E512}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC7ECDC-8FFE-418B-9250-C2AF3A99E512}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC7ECDC-8FFE-418B-9250-C2AF3A99E512}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC7ECDC-8FFE-418B-9250-C2AF3A99E512}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
