@@ -5,7 +5,7 @@ namespace Kyogo.Application.Authentication.Tokens;
 
 public sealed class TokenExchangeService(IUserRepository userRepository, ITokenGeneratorService tokenGeneratorService, IRefreshTokenRepository refreshTokenRepository, IUnitOfWork unitOfWork)
 {
-    public async Task<TokenExchangeResult> ExchangeByRawTokenAsync(string rawRefreshToken, CancellationToken cancellationToken)
+    public async Task<TokenExchangeResult> ExchangeByRawTokenAsync(string rawRefreshToken, CancellationToken cancellationToken = default)
     {
         RefreshToken? refreshToken = await refreshTokenRepository.GetByRawTokenAsync(rawRefreshToken, cancellationToken);
         return refreshToken is null
